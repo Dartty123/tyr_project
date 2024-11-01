@@ -1,0 +1,12 @@
+{% block content %}
+<h1>Додати новий тур</h1>
+<form method="POST">
+    <label for="name">Назва туру:</label>
+    <input type="text" id="name" name="name" required>
+    
+    <label for="price">Ціна:</label>
+    <input type="number" id="price" name="price" required>
+    
+    <button type="submit">Додати тур</button>
+</form>
+{% endblock %}
