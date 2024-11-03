@@ -38,7 +38,7 @@ def book_tour(tour_id):
         booking = Booking(tour_id=tour_id, customer_name=name, customer_email=email,booking=booking)
         return redirect(url_for('home'))
 
-    return render_template('booking.html', tour=tour)
+    return render_template('reserve_tyr.html', tour=tour)
 
 @app.tyr_route('/add_tour', methods=['GET', 'POST'])
 def add_tour():
