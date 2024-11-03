@@ -47,7 +47,7 @@ def add_tour():
         price = request.form['price']
         new_tour = Tour(name=name, price=price, new_tour=new_tour)
         return redirect(url_for('home'))
-    return render_template('add_tour.html')
+    return render_template('add_tyr.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
