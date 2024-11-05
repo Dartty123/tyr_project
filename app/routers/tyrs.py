@@ -1,7 +1,6 @@
 from flask import Flask, Blueprint, render_template, request, redirect, url_for
 from models import  Tour, Booking, name
 
-app = Flask(__name__)
 tyr_route = Blueprint("tyrs", __name__)
 tours = [
     {"id": 1, "name": "Тур по Карпатах", "price": 1500},
@@ -9,11 +8,11 @@ tours = [
     {"id": 3, "name": "Екскурсія по місту", "price": 1200}
 ]
 
-@app.route('/')
+@tyr_route.get ('/')
 def home():
     return render_template('index.html', tours=tours)
 
-@app.route('/book/<int:tour_id>', methods=['GET', 'POST'])
+@tyr_route.get('/book/<int:tour_id>', methods=['GET', 'POST'])
 def book_tour(tour_id):
     tour = next((tour for tour in tours if tour["id"] == tour_id), None)
     if request.method == 'POST':
@@ -23,13 +22,13 @@ def book_tour(tour_id):
 
     return render_template('reserve_tyr.html', tour=tour)
 
-@app.route('/')
+@tyr_route.get('/')
 def home():
     tours = Tour.query.all()
     bookings = Booking.query.all()
     return render_template('index.html', tours=tours, bookings=bookings)
 
-@app.route('/book/<int:tour_id>', methods=['GET', 'POST'])
+@tyr_route.post('/book/<int:tour_id>', methods=['GET', 'POST'])
 def book_tour(tour_id):
     tour = Tour.query.get_or_404(tour_id)
     if request.method == 'POST':
@@ -40,7 +39,7 @@ def book_tour(tour_id):
 
     return render_template('reserve_tyr.html', tour=tour)
 
-@app.tyr_route('/add_tour', methods=['GET', 'POST'])
+@tyr_route.post('/add_tour', methods=['GET', 'POST'])
 def add_tour():
     if request.method == 'POST':
         name = request.form['name']
@@ -49,5 +48,4 @@ def add_tour():
         return redirect(url_for('home'))
     return render_template('add_tyr.html')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
