@@ -12,7 +12,7 @@ tours = [
 def home():
     return render_template('index.html', tours=tours)
 
-@tyr_route.get('/book/<int:tour_id>', methods=['GET', 'POST'])
+@tyr_route.route('/')
 def book_tour(tour_id):
     tour = next((tour for tour in tours if tour["id"] == tour_id), None)
     if request.method == 'POST':
@@ -28,7 +28,7 @@ def home():
     bookings = Booking.query.all()
     return render_template('index.html', tours=tours, bookings=bookings)
 
-@tyr_route.post('/book/<int:tour_id>', methods=['GET', 'POST'])
+@tyr_route.route('/book/<int:tour_id>', methods=['GET', 'POST'])
 def book_tour(tour_id):
     tour = Tour.query.get_or_404(tour_id)
     if request.method == 'POST':
@@ -39,7 +39,7 @@ def book_tour(tour_id):
 
     return render_template('reserve_tyr.html', tour=tour)
 
-@tyr_route.post('/add_tour', methods=['GET', 'POST'])
+@tyr_route.route('/add_tour', methods=['GET', 'POST'])
 def add_tour():
     if request.method == 'POST':
         name = request.form['name']
