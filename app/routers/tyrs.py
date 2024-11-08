@@ -1,5 +1,5 @@
 from flask import Flask, Blueprint, render_template, request, redirect, url_for
-from models import  Tour, Booking, name
+from app.model.models import  Tour, Booking
 
 tyr_route = Blueprint("tyrs", __name__)
 tours = [
