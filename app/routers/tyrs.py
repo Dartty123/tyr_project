@@ -8,19 +8,6 @@ tours = [
     {"id": 3, "name": "Екскурсія по місту", "price": 1200}
 ]
 
-@tyr_route.get ('/')
-def home():
-    return render_template('index.html', tours=tours)
-
-@tyr_route.route('/')
-def book_tour(tour_id):
-    tour = next((tour for tour in tours if tour["id"] == tour_id), None)
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        return redirect(url_for('home'))
-
-    return render_template('reserve_tyr.html', tour=tour)
 
 @tyr_route.get('/')
 def home():
