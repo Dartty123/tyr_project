@@ -7,13 +7,13 @@ class Base(DeclarativeBase):
 db = SQLAlchemy (model_class=Base)
 
 class Tour(db.Model):
-    tablename = 'tours'
+    __tablename__ = 'tours'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Integer, nullable=False)
 
 class Booking(db.Model):
-    tablename = 'bookings'
+    __tablename__ = 'bookings'
     id = db.Column(db.Integer, primary_key=True)
     tour_id = db.Column(db.Integer, db.ForeignKey('tours.id'), nullable=False)
     customer_name = db.Column(db.String(100), nullable=False)
