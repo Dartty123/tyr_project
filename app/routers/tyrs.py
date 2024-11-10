@@ -22,7 +22,7 @@ def book_tour(tour_id):
         name = request.form['name']
         email = request.form['email']
         booking = Booking(tour_id=tour_id, customer_name=name, customer_email=email,booking=booking)
-        return redirect(url_for('home'))
+        return redirect(url_for('tyrs.home'))
 
     return render_template('reserve_tyr.html', tour=tour)
 
@@ -31,8 +31,8 @@ def add_tour():
     if request.method == 'POST':
         name = request.form['name']
         price = request.form['price']
-        new_tour = Tour(name=name, price=price, new_tour=new_tour)
-        return redirect(url_for('home'))
+        new_tour = Tour(name=name, price=price,)
+        return redirect(url_for('tyrs.home'))
     return render_template('add_tyr.html')
 
 
