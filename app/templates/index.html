@@ -7,8 +7,9 @@
     <li>
         <h2>{{ tour.name }}</h2>
         <p>Ціна: {{ tour.price }} грн</p>
-        <a href="{{ url_for('book_tour', tour_id=tour.id) }}">Забронювати</a>
+        <a href="{{ url_for('tyrs.book_tour', tour_id=tour.id) }}">Забронювати</a>
     </li>
     {% endfor %}
+    <a href="{{ url_for('tyrs.add_tour') }}">Додати тур</a>
 </ul>
 {% endblock %}

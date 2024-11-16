@@ -1,5 +1,5 @@
 from flask import Flask, Blueprint, render_template, request, redirect, url_for
-from app.model.models import  Tour, Booking
+from app.model.models import  Tour, Booking, db
 
 tyr_route = Blueprint("tyrs", __name__)
 tours = [
@@ -21,7 +21,8 @@ def book_tour(tour_id):
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
-        booking = Booking(tour_id=tour_id, customer_name=name, customer_email=email,booking=booking)
+        booking = Booking(tour_id=tour_id, customer_name=name, customer_email=email,)
+        db.session.commit()
         return redirect(url_for('tyrs.home'))
 
     return render_template('reserve_tyr.html', tour=tour)
@@ -32,6 +33,8 @@ def add_tour():
         name = request.form['name']
         price = request.form['price']
         new_tour = Tour(name=name, price=price,)
+        db.session.add(new_tour)
+        db.session.commit()
         return redirect(url_for('tyrs.home'))
     return render_template('add_tyr.html')
 

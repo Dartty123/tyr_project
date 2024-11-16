@@ -21,4 +21,4 @@ class Booking(db.Model):
     tour = db.relationship('Tour', backref=db.backref('bookings', lazy=True))
 
     def repr(self):
-        return f'<Booking {self.customer_name} - {self.tour.name}>'
+        return f'<Booking {self.customer_name} - {self.tour}>'
